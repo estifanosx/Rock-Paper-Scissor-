@@ -4,6 +4,10 @@ const scissor = document.querySelector(".scissor");
 let display = document.getElementById("result");
 let urMove = document.getElementById("urMove");
 let cpMove = document.getElementById("cpMove");
+let score = document.getElementById("score");
+let Wins = 0;
+let Losses = 0;
+let Ties = 0;
 
 rock.onclick = () => {
   playGame("rock");
@@ -47,15 +51,19 @@ let playGame = (userMove) => {
   cpMove.textContent = `Computer Choose ${computerMove}`;
   if (userMove === computerMove) {
     display.textContent = "You Tie";
+    Ties++;
   } else if (
     (userMove === "rock" && computerMove === "scissor") ||
     (userMove === "scissor" && computerMove === "paper") ||
     (userMove === "paper" && computerMove === "rock")
   ) {
     display.textContent = "you Win ";
+    Wins++;
   } else {
     display.textContent = "You Lose ";
+    Losses++;
   }
+  updateScore();
 };
 
 const getcomputerMove = () => {
@@ -67,4 +75,8 @@ const getcomputerMove = () => {
   } else {
     return "scissor";
   }
+};
+
+updateScore = () => {
+  score.textContent = `Wins : ${Wins} | Losses :${Losses}  | Ties ${Ties}`;
 };
