@@ -5,50 +5,66 @@ let display = document.getElementById("result");
 let urMove = document.getElementById("urMove");
 let cpMove = document.getElementById("cpMove");
 
-let computerMove = "";
-
 rock.onclick = () => {
-  repetiton();
-  urMove.textContent = "You Chose Rock";
-  if (computerMove === "rock") {
-    display.textContent = "Tie";
-  } else if (computerMove === "paper") {
-    display.textContent = "You Lose";
-  } else {
-    display.textContent = "You win";
-  }
+  playGame("rock");
+
+  // urMove.textContent = "You Chose Rock";
+  // if (computerMove === "rock") {
+  //   display.textContent = "Tie";
+  // } else if (computerMove === "paper") {
+  //   display.textContent = "You Lose";
+  // } else {
+  //   display.textContent = "You win";
+  // }
 };
 paper.onclick = () => {
-  repetiton();
-  urMove.textContent = "You Chose Paper";
-  if (computerMove === "rock") {
-    display.textContent = "You win";
-  } else if (computerMove === "paper") {
-    display.textContent = "Tie";
-  } else {
-    display.textContent = "You Lose";
-  }
+  playGame("paper");
+  // urMove.textContent = "You Chose Paper";
+  // if (computerMove === "rock") {
+  //   display.textContent = "You win";
+  // } else if (computerMove === "paper") {
+  //   display.textContent = "Tie";
+  // } else {
+  //   display.textContent = "You Lose";
+  // }
 };
 scissor.onclick = () => {
-  repetiton();
-  urMove.textContent = "You Chose Scissor";
-  if (computerMove === "rock") {
-    display.textContent = "You Lose";
-  } else if (computerMove === "paper") {
-    display.textContent = "You win";
+  playGame("scissor");
+
+  // urMove.textContent = "You Chose Scissor";
+  // if (computerMove === "rock") {
+  //   display.textContent = "You Lose";
+  // } else if (computerMove === "paper") {
+  //   display.textContent = "You win";
+  // } else {
+  //   display.textContent = "Tie";
+  // }
+};
+
+let playGame = (userMove) => {
+  const computerMove = getcomputerMove();
+  urMove.textContent = `You choose ${userMove}`;
+  cpMove.textContent = `Computer Choose ${computerMove}`;
+  if (userMove === computerMove) {
+    display.textContent = "You Tie";
+  } else if (
+    (userMove === "rock" && computerMove === "scissor") ||
+    (userMove === "scissor" && computerMove === "paper") ||
+    (userMove === "paper" && computerMove === "rock")
+  ) {
+    display.textContent = "you Win ";
   } else {
-    display.textContent = "Tie";
+    display.textContent = "You Lose ";
   }
 };
 
-const repetiton = () => {
+const getcomputerMove = () => {
   let randomNumber = Math.random();
   if (randomNumber < 1 / 3) {
-    computerMove = "rock";
-  } else if (randomNumber > 1 / 3 && randomNumber < 2 / 3) {
-    computerMove = "paper";
+    return "rock";
+  } else if (randomNumber < 2 / 3) {
+    return "paper";
   } else {
-    computerMove = "scissor";
+    return "scissor";
   }
-  cpMove.textContent = `Computer Chose ${computerMove}`;
 };
