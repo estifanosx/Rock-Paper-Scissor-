@@ -5,6 +5,7 @@ let display = document.getElementById("result");
 let urMove = document.getElementById("urMove");
 let cpMove = document.getElementById("cpMove");
 let score = document.getElementById("score");
+let newGame = document.getElementById("newGame");
 let Wins = 0;
 let Losses = 0;
 let Ties = 0;
@@ -78,5 +79,12 @@ const getcomputerMove = () => {
 };
 
 updateScore = () => {
+  score.textContent = `Wins : ${Wins} | Losses :${Losses}  | Ties ${Ties}`;
+};
+
+newGame.onclick = () => {
+  Wins = 0;
+  Losses = 0;
+  Ties = 0;
   score.textContent = `Wins : ${Wins} | Losses :${Losses}  | Ties ${Ties}`;
 };
